@@ -12,6 +12,43 @@
 $ cd scripts/
 $ ./deploy.sh
 ```
+# Editing gNB and UE Configuration
+
+You can edit the configuration files for gNB and UE by accessing their respective Docker containers. Follow these steps:
+
+## Steps to Edit Configuration
+
+1. **Enter the container**:
+   Use the following command to access the gNB or UE container:
+   ```bash
+   sudo docker exec -it <container_name> bash
+   
+### For gNB:
+- Open and edit the `gnb.yml` file.
+- Adjust the **location** of the gNB and UE by modifying the `phyLocation` parameter in their respective YAML files.
+- Configure the following parameters for Wi-Fi settings:
+  - `wifi`
+  - `sessionIP`
+  - `nextHop`
+  - `UeInterface`
+  - `nextHopInterface`
+
+### For UE:
+- Open and edit the `ue.yml` file.
+- Add all the IP addresses of gNBs that the UE might connect with in the `gnbSearchList` parameter.
+- Define an array of `(x, y, z)` coordinates for the `phyLocation` parameter, as currently done.
+- Ensure the movement pattern is set to **linear**.
+- Specify the velocity of the UE in meters per second (m/s).
+- Set `wifi` to `true` when using Wi-Fi.
+- Declare the following additional parameters:
+  - **`staticIP`**: Specifies the IP address of the UE.
+  - **`Interface`**: Specifies the interface through which the UE is connected.
+
+
+
+> **Note:** Wi-Fi configuration is applicable only when there is **no 5G core network**.
+
+
 
 ## Starting gNB and UEs
 
@@ -38,7 +75,7 @@ $ cd scripts/
 $ ./start-ue2.sh
 ```
 
-## Using UE's Internet connectivity
+## Using SSH for UE's 
 
 Open a new terminal tab or window and execute the following:
 
@@ -53,26 +90,6 @@ $ ssh -X root@clab-ueransim-ue2
 (for UE 2)
 
 Password is `gprsumts`.
-
-Once logged in, execute the following command to launch an instance of Firefox attached to the GTP interface:
-
-```
-$ cd /UERANSIM/build
-$ ./nr-binder 172.45.1.2 firefox
-```
-(for UE 1)
-
-```
-$ cd /UERANSIM/build
-$ ./nr-binder 172.45.1.3 firefox
-```
-(for UE 2)
-
-In case the IP addresses assigned to the GTP interfaces do not match the above values, you can retrieve them with the following command:
-
-```
-$ ifconfig uesimtun0
-```
 
 ## Destroying the scenario
 

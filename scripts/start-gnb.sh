@@ -27,7 +27,7 @@ echo 'Starting UERANSIM gNB (in foreground)...'
 echo ''
 echo ''
 
-sudo docker exec -it clab-ueransim-gnb /UERANSIM/build/nr-gnb -c /gnb.yaml
+sudo docker exec -it clab-ueransim-gnb /gNB_UERANSIM/build/nr-gnb -c /gnb.yaml
 
 echo ''
 echo ''

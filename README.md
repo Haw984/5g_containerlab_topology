@@ -25,7 +25,7 @@ You can edit the configuration files for gNB and UE by accessing their respectiv
    
 ### For gNB:
 - Open and edit the `gnb.yml` file.
-- Adjust the **location** of the gNB and UE by modifying the `phyLocation` parameter in their respective YAML files.
+- Adjust the **location** of the gNB by modifying the `phyLocation` parameter in the YAML files.
 - Configure the following parameters for Wi-Fi settings:
   - `wifi`
   - `sessionIP`
